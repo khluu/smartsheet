@@ -236,7 +236,7 @@ build_trace_to_mathml_node_map = function(in_mathml, in_tracegroups)
 			{
 				var trace_data_ref = traceViews.item(j).getAttribute("traceDataRef");
 				trace_id_to_mathmlnode[trace_data_ref] = xmlid_to_mathnode[href];
-				console.log(trace_data_ref + " " + href);
+				//console.log(trace_data_ref + " " + href);
 			}
 		}
 	}
@@ -260,10 +260,10 @@ trace_nodes_to_svg = function(trace_nodes, global_index, numChannels)
 	pattern = /,*\s+/g;
 	pattern.compile(pattern);
 	var point_strings = point_text.split(pattern);
-	console.log(point_strings)
+	//console.log(point_strings)
 	//res = runPyScript(point_strings)
     //result = runPyScript(trace_nodes[0]);
-    //console.log(result)
+    ////console.log(result)
 	// build our root svg
 	result_svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 	result_svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -426,10 +426,10 @@ trace_nodes_to_svg = function(trace_nodes, global_index, numChannels)
 		{
 			var x = parseFloat(point_strings[j]);
 			var y = parseFloat(point_strings[j+1]);
-            console.log(x, ' ', y)
-			//console.log(x);
-			//console.log(y);
-			//console.log('--');
+            //console.log(x, ' ', y)
+			////console.log(x);
+			////console.log(y);
+			////console.log('--');
 
 			if(j != 0)
 			{
@@ -458,7 +458,7 @@ trace_nodes_to_svg = function(trace_nodes, global_index, numChannels)
 			max_x = Math.max(max_x, x);
 			max_y = Math.max(max_y, y);
 		}
-        console.log(point_list)
+        //console.log(point_list)
 		traces.push(point_list);
 		trace_lengths.push(trace_length);
 	}
@@ -489,7 +489,7 @@ trace_nodes_to_svg = function(trace_nodes, global_index, numChannels)
 
 	// speed to draw a trace (ie, how fast the pen moves)
 	rect.trace_speed = mean_trace_length * scale / 0.5;
-    console.log(traces)
+    //console.log(traces)
 	// build svg elements
 	for(var k = 0; k < traces.length; k++)
 	{
@@ -706,7 +706,7 @@ build_attribute_table = function(annotation_nodes, filename, mathml)
 				break;
 		}
 
-		console.log("Read attribute: (" + type + ", " + value + ")");
+		//console.log("Read attribute: (" + type + ", " + value + ")");
 		if (type != "truth") {
 		var row_n = document.createElement("tr");
 			var td_attr = document.createElement("td");
@@ -771,7 +771,7 @@ on_xml_load = function(event)
 			filename_list[k] = file.name;
 		else
 			filename_list[k] = file;
-		//console.log("FN:" + file);
+		////console.log("FN:" + file);
 
 		parseInkML = function(inkmlText,currentIndex)
 		{
@@ -781,7 +781,7 @@ on_xml_load = function(event)
 
 			// Get the number of channels.
 			numChannels = xmlDOC.getElementsByTagName("channel").length;
-			console.log("Channels: " + numChannels);
+			//console.log("Channels: " + numChannels);
 
 			// get our math node
 			var math_nodes = xmlDOC.getElementsByTagName("math");
@@ -812,7 +812,7 @@ on_xml_load = function(event)
 
 			// get our trace nodes
 			trace_nodes = xmlDOC.getElementsByTagName("trace");
-			console.log(trace_nodes.item(0))
+			//console.log(trace_nodes.item(0))
 			var svg = null;
 			if(trace_nodes.length > 0)
 				svg = trace_nodes_to_svg(trace_nodes, currentIndex, numChannels);
@@ -842,20 +842,20 @@ on_xml_load = function(event)
 			r.readAsText(file);
 		} else {
 			// Read URLs as URLs
-			//console.log("OUTER SCOPE ALIVE.");
+			////console.log("OUTER SCOPE ALIVE.");
 			var inkmlText = "";
 			$.ajax({
 				url: file,
 				data: inkmlText,
 				success: function( data ) {
-					console.log(data);
-					console.log("ALIVE");
+					//console.log(data);
+					//console.log("ALIVE");
 					parseInkML(data,k);
 				},
 				error: function (err) {
-					console.log("ERROR...");
-					console.log(inkmlText);
-					console.log(err.toString());
+					//console.log("ERROR...");
+					//console.log(inkmlText);
+					//console.log(err.toString());
 				}
 			});
 			//$.get(file,urlFileCallback);
@@ -866,7 +866,7 @@ on_xml_load = function(event)
 // updates the screen to reflect the current inkml file
 update_view = function()
 {
-	//console.log(current_index);
+	////console.log(current_index);
 
 	// insert the svg
 	var svg = svg_list[current_index];
@@ -950,7 +950,7 @@ classificationToTable = function( data ) {
 			+ "<span class=\"classification_div_prob\">" + c[ 1 ] + "</span></div>";
 	}
 
-	console.log( html );
+	//console.log( html );
 	table.innerHTML = html;
 	return table;
 }
@@ -1008,7 +1008,7 @@ if (fileList[0] == "")
 }
 
 
-console.log(fileList.length + " files passed in URL Query String");
+//console.log(fileList.length + " files passed in URL Query String");
 
 // Construct list of (absolute) files, invoke on_xml_load handler.
 for (i=0; i < fileList.length; i++)
@@ -1018,6 +1018,6 @@ for (i=0; i < fileList.length; i++)
 
 if(fileList.length > 0)
 {
-	console.log("FILES FROM COMMAND LINE: \n" + fileList);
+	//console.log("FILES FROM COMMAND LINE: \n" + fileList);
 	on_xml_load(fileList);
 }
