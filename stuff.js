@@ -1,20 +1,3 @@
-function runPyScript(input){
-        console.log('Here')
-        var jqXHR = $.ajax({
-            type: "GET",
-            url: "http://127.0.0.1:5000/login",
-            async: false,
-            data: { mydata: input }
-        });
-
-        return jqXHR.responseText;
-    }
-
-    $('#submitbutton').click(function(){
-        datatosend = 'this is my matrix';
-        result = runPyScript(datatosend);
-        console.log('Got back ' + result);
-    });
 
 inkml_list = new Array();
 mathml_list = new Array();
@@ -278,7 +261,7 @@ trace_nodes_to_svg = function(trace_nodes, global_index, numChannels)
 	pattern.compile(pattern);
 	var point_strings = point_text.split(pattern);
 	console.log(point_strings)
-	res = runPyScript(point_strings)
+	//res = runPyScript(point_strings)
     //result = runPyScript(trace_nodes[0]);
     //console.log(result)
 	// build our root svg
