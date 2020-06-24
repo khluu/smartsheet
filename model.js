@@ -2,7 +2,7 @@
 //import * as ui from './ui.js';
 
 async function init() {
-    model = await tf.loadModel('https://raw.githubusercontent.com/khluu/smartsheet/master/tfjs/model%20(1).json', strict=false);
+    model = await tf.loadModel('https://raw.githubusercontent.com/khluu/smartsheet/master/tfjs/model.json', strict=false);
     console.log('model loaded');
     run();
 }
@@ -12,8 +12,7 @@ function predict() {
 }
 
 function run() {
-    console.log(run);
-    console.log(model.summary());
+    console.log(model.getWeights()[0].print());
 
     var a = tf.tensor ([[[ 0.03709199  ,2.0334387,   0.18545994, -0.09037506 , 0.,
    -0.09366621 , 0.       ,   0.06876937 , 1.        ],
