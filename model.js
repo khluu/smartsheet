@@ -2,7 +2,7 @@
 //import * as ui from './ui.js';
 
 async function init() {
-    model = await tf.loadModel('https://raw.githubusercontent.com/khluu/smartsheet/master/tfjs/model.json', strict=false    );
+    model = await tf.loadModel('https://raw.githubusercontent.com/khluu/smartsheet/master/tfjs/model%20(1).json', strict=false    );
     console.log('model loaded');
     run();
 }
@@ -78,15 +78,8 @@ function run() {
     [-1.    ,     -1.   ,      -1.     ,    -1.    ,      0.,
     0.      ,    0.     ,     0.      ,   -1.        ],
     [-1.    ,     -1.   ,      -1.     ,    -1.    ,      0.,
-    0.      ,    0.     ,     0.      ,   -1.        ],
-    [-1.    ,     -1.   ,      -1.     ,    -1.    ,      0.,
-    0.      ,    0.     ,     0.      ,   -1.        ],
-    [-1.    ,     -1.   ,      -1.     ,    -1.    ,      0.,
-    0.      ,    0.     ,     0.      ,   -1.        ],
-    [-1.    ,     -1.   ,      -1.     ,    -1.    ,      0.,
-    0.      ,    0.     ,     0.      ,   -1.        ],
-  ]], dtype=tf.float32);
-    console.log(a);
+    0.      ,    0.     ,     0.      ,   -1.        ]]], dtype=tf.float32);
+    console.log(a.shape);
     b = model.predict(a);
     //console.log(b.argMax().type);
     var c = b.dataSync();
