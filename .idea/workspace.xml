@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6ab06110-4ade-4d4e-946c-66b8f7443d1f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tfjs/model.json" beforeDir="false" afterPath="$PROJECT_DIR$/tfjs/model.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,20 +34,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+            <state relative-caret-position="210">
+              <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tfjs/model.json">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="2612" selection-start-column="2612" selection-end-column="2612" />
+              <caret column="2626" selection-start-column="2626" selection-end-column="2626" />
             </state>
           </provider>
         </entry>
@@ -83,8 +83,8 @@
         <option value="$PROJECT_DIR$/stuff.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/model.js" />
         <option value="$PROJECT_DIR$/tfjs/model.json" />
+        <option value="$PROJECT_DIR$/model.js" />
       </list>
     </option>
   </component>
@@ -200,6 +200,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tfjs/model.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2626" selection-start-column="2626" selection-end-column="2626" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -212,15 +219,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tfjs/model.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="2612" selection-start-column="2612" selection-end-column="2612" />
+        <state relative-caret-position="210">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
         </state>
       </provider>
     </entry>
