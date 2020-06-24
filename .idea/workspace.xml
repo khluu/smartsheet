@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ab06110-4ade-4d4e-946c-66b8f7443d1f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tfjs/model.json" beforeDir="false" afterPath="$PROJECT_DIR$/tfjs/model.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,11 +34,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+            <state relative-caret-position="285">
+              <caret line="19" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tfjs/model.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="2612" selection-start-column="2612" selection-end-column="2612" />
             </state>
           </provider>
         </entry>
@@ -74,6 +84,7 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/model.js" />
+        <option value="$PROJECT_DIR$/tfjs/model.json" />
       </list>
     </option>
   </component>
@@ -97,6 +108,11 @@
             <path>
               <item name="smartsheet" type="b2602c69:ProjectViewProjectNode" />
               <item name="smartsheet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="smartsheet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartsheet" type="462c0819:PsiDirectoryNode" />
+              <item name="tfjs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -196,8 +212,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        <state relative-caret-position="285">
+          <caret line="19" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tfjs/model.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2612" selection-start-column="2612" selection-end-column="2612" />
         </state>
       </provider>
     </entry>
