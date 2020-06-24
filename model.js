@@ -2,7 +2,7 @@
 //import * as ui from './ui.js';
 
 async function init() {
-    model = await tf.loadModel('https://raw.githubusercontent.com/khluu/smartsheet/master/tfjs/model%20(1).json', strict=false    );
+    model = await tf.loadModel('https://raw.githubusercontent.com/khluu/smartsheet/master/tfjs/model%20(1).json', strict=false);
     console.log('model loaded');
     run();
 }
