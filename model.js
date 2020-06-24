@@ -1,8 +1,8 @@
-import * as tf from '@tensorflow/tfjs';
-import * as ui from './ui.jss';
+//import * as tf from '@tensorflow/tfjs';
+//import * as ui from './ui.jss';
 
 async function init() {
-    model = await tf.loadModel('https://github.com/khluu/smartsheet/blob/master/tfjs/model.json');
+    model = await tf.loadModel('https://raw.githubusercontent.com/khluu/smartsheet/master/model.js');
     //console.log('model loaded')
 }
 
