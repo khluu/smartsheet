@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1VHH8L4OaULNQswxYRqbhB5sW1dMDco14
 """
 
+#Import libraries
 import sys
 print(sys.argv[0])
 import math
@@ -21,7 +22,6 @@ np.random.seed(123)
 from tensorflow import keras
 from tensorflow.keras import layers, regularizers
 from tensorflow.keras.optimizers import Adam
-
 from keras.layers import LSTM, GRU, Bidirectional
 from keras.models import Sequential
 from keras.utils import np_utils
@@ -37,6 +37,8 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers, Model
 from tensorflow.keras.layers import GRU, Attention, Input, Concatenate, Dense, TimeDistributed, Activation, dot
+
+#Functions to read data from .hdf5 files
 
 def load_dict_from_hdf5(filename):
     with h5py.File(filename, 'r') as h5file:
@@ -54,11 +56,14 @@ def recursively_load_dict_contents_from_group(h5file, path):
 def convert_tensor(arg):
     return tf.convert_to_tensor(arg, dtype=tf.float32)
 
+#Import data from Google Drive
+
 from google.colab import drive
 drive.mount('/content/drive/')
-filename = "/content/drive/My Drive/ColabPro/train_attn2.hdf5"
+filename = "/content/drive/My Drive/ColabPro/train_attn.hdf5"
 train_data = load_dict_from_hdf5(filename)
 
+#Filter data from input
 label_encoder = LabelEncoder()
 onehot_encoder = OneHotEncoder(sparse=False)
 unique_labels = {}
@@ -82,6 +87,8 @@ def to_lists(data):
         labels_lst.append(labels_lst_inside)
     return curves_lst, labels_lst, max_curves
         
+#All these functions is to add padding for data to work with correct dimension in the model
+
 #From here: https://stackoverflow.com/questions/57346556/creating-a-ragged-tensor-from-a-list-of-tensors
 def stack_ragged(tensors):
     values = tf.concat(tensors, axis=0)
@@ -102,6 +109,7 @@ def stack_eq(tensors):
     pad = lambda x: np.pad(x, pad_width=((0, max_count - len(x)), (0,0), (0,0)))
     return np.concatenate([np.expand_dims(pad(x),0) for x in tensors],axis=0)
 
+#OneHotEncoding to encode all labels
 def encode_labels(labels,fit=True):
     if(fit): label_encoder.fit(labels)
     integer_encoded = label_encoder.transform(labels)
@@ -117,10 +125,10 @@ def stack_labels_dense(tensors):
     pad = lambda x: np.pad(x, pad_width=((0, max_count - len(x)), (0,0)))
     return np.concatenate([np.expand_dims(pad(x), 0) for x in tensors],axis=0)
 
-#Process train_data
+#Process train_data and labels
+
 curves_lst, labels_lst, max_curves = to_lists(train_data)
 def processData(train_data):
-  
   curves = []
   labels = []
   max_curves = 0
@@ -162,6 +170,7 @@ def processLabel(train_data):
   stack_labels = stack_labels_dense(stack_labels)
   return stack_labels
 
+#Process train_data and add <start> and <end> characters (not currently used)
 def processData2(train_data):
   
   curves = []
@@ -198,56 +207,63 @@ def processData2(train_data):
 
 
 
+#Run process data and print out shapes
+
 X_train = processData(train_data)
 Y_train = processLabel(train_data)
 print(X_train.shape)
 print(Y_train.shape)
 
-#max_curves = 159
+#Configuration & dimensions for model
 max_curves = Y_train.shape[1]
 max_characters = 40
 curve_size = 9
 alphabet_size = Y_train.shape[2]
 hidden_size = 100
 
+#Set up input
 encoder_inputs = Input(batch_shape=(None, max_curves, curve_size), name='encoder_inputs')
 decoder_inputs = Input(batch_shape=(None, max_curves, alphabet_size), name='decoder_inputs')
 
-
+#Set up Encoder GRU layer that takes in encoder_inputs and returns encoder output and encoder hidden state
 encoder_gru = GRU(hidden_size, return_sequences=True, return_state=True, reset_after=False, name='encoder_gru')
 encoder_out, encoder_state = encoder_gru(encoder_inputs)
 print('Enc_out: ', encoder_out.shape)
 
+#Set up Decoder GRU layer that takes in decoder inputs and returns decoder output and decoder hidden state
 decoder_gru = GRU(hidden_size, return_sequences=True, return_state=True, reset_after=False, name='decoder_gru')
 decoder_out, decoder_state = decoder_gru(decoder_inputs, initial_state=encoder_state)
 print('Dec_out: ', decoder_out.shape)
 
-#attn_layer = Attention(name='attention_layer')
-#attn_out = attn_layer([encoder_out, decoder_out])
-
-#Bahdanau Attention
+#Use Bahdanau Attention to calculate attention weights and run it through a Softmax activation layer
 attn_out = dot([encoder_out, decoder_out], axes=[2, 2])
-#attn_out = tf.nn.tanh(attn_out)
-#V = tf.keras.layers.Dense(541)
-#attn_out = V(attn_out)
 attn_out = Activation('softmax')(attn_out)
 
+#Create context vector by adding attention weights on top of encoder output
 print('Attn: ', attn_out.shape)
 context = dot([attn_out, encoder_out], axes=[2,1])
 print('Context: ', context.shape)
 
+#Combine decoder output and context vector -> Decoder Concatenated Input
 decoder_concat_input = Concatenate(axis=-1, name='concat_layer')([decoder_out, context])
 print('Dec_concat_inp: ', decoder_concat_input.shape)
 dense = Dense(alphabet_size, activation='softmax', name='softmax_layer')
 
+#Use TimeDistributed layer on the decoder concatenated input 
 dense_time = TimeDistributed(dense, name='time_distributed_layer')
 
 decoder_pred = dense_time(decoder_concat_input)
 print('Dense: ', decoder_pred.shape)
+
+#Run the process through Keras functional model
 full_model = Model(inputs=[encoder_inputs, decoder_inputs], outputs=decoder_pred)
+
+#Compile model
 full_model.compile(optimizer=Adam(lr=1e-2 * 3.33), loss='categorical_crossentropy', metrics=['accuracy'])
 
+#Plot the structure of the model out
 keras.utils.plot_model(full_model, "my_first_model.png")
 
+#Start training
 full_model.fit([X_train, Y_train], Y_train, epochs = 10, batch_size = 320)
 
